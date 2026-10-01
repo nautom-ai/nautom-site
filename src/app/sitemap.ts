@@ -20,5 +20,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: "https://nautom.com/privacidad",
+      lastModified: new Date("2026-10-01"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://nautom.com/terminos",
+      lastModified: new Date("2026-10-01"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }
