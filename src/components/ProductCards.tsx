@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 /* ── Illustrated mockups for each product ────────────────────────────────── */
 
@@ -92,414 +93,22 @@ function GestionFinancieraMockup() {
   );
 }
 
-/** Nautom Padel — timeline view with court rows and orange accent */
-function PadelAppMockup() {
-  const days = [
-    { day: "Jue", num: 2, selected: true },
-    { day: "Vie", num: 3 },
-    { day: "Sáb", num: 4 },
-    { day: "Dom", num: 5, highlight: true },
-    { day: "Lun", num: 6 },
-    { day: "Mar", num: 7 },
-  ];
-
-  const hours = ["08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
-
-  // Court timeline: 0 = free, 1 = occupied, 2 = your reservation
-  const courts = [
-    { name: "Cancha 1", price: "$90.000", slots: [0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 2, 2] },
-    { name: "Cancha 2", price: "$90.000", slots: [1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0] },
-    { name: "Cancha 3", price: "$90.000", slots: [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0] },
-    { name: "Cancha 4", price: "$90.000", slots: [0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1] },
-  ];
-
-  return (
-    <div className="absolute inset-0 top-8 bg-[#0C1B33] p-2 flex flex-col gap-1.5 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <span className="text-[7px] font-bold text-[#D4804A] italic">Nautom Padel</span>
-        <div className="flex gap-1">
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-white/5 text-[#94A3B8] border border-white/10">
-            Iniciar sesión
-          </span>
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-[#D4804A] text-white font-medium">
-            Registrarse
-          </span>
-        </div>
+/** Captura real de la página principal del producto (public/images/productos). */
+function capturaDe(src: string, alt: string) {
+  function Captura() {
+    return (
+      <div className="absolute inset-0 top-8 overflow-hidden bg-[#0b0f1a]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        />
       </div>
-
-      {/* Day selector pills */}
-      <div className="flex gap-1">
-        {days.map((d) => (
-          <div
-            key={d.num}
-            className={`flex flex-col items-center px-1.5 py-0.5 rounded ${
-              d.selected
-                ? "bg-[#D4804A]"
-                : d.highlight
-                ? "bg-[#E8994A]/20"
-                : "bg-white/5"
-            }`}
-          >
-            <span className={`text-[4px] ${d.selected || d.highlight ? "text-white" : "text-[#94A3B8]"}`}>{d.day}</span>
-            <span className={`text-[6px] font-bold ${d.selected ? "text-white" : d.highlight ? "text-[#E8994A]" : "text-white"}`}>{d.num}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* View tabs + duration */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1">
-          <span className="text-[5px] text-[#94A3B8] px-1 py-0.5 rounded bg-white/5">Grilla</span>
-          <span className="text-[5px] text-white px-1 py-0.5 rounded bg-[#D4804A]/30 border border-[#D4804A]/40 font-medium">Timeline</span>
-        </div>
-        <div className="flex gap-0.5">
-          <span className="text-[5px] text-white px-1 py-0.5 rounded bg-[#D4804A] font-medium">90&apos;</span>
-          <span className="text-[5px] text-[#94A3B8] px-1 py-0.5 rounded bg-white/5">120&apos;</span>
-        </div>
-      </div>
-
-      {/* Timeline grid */}
-      <div className="flex-1 bg-[#0C1B33]/50 rounded border border-white/5 p-1 overflow-hidden">
-        {/* Hour headers */}
-        <div className="flex mb-0.5">
-          <div className="w-12 flex-shrink-0" />
-          {hours.map((h) => (
-            <span key={h} className="flex-1 text-[3.5px] text-[#94A3B8] text-center">{h}:00</span>
-          ))}
-        </div>
-
-        {/* Court rows */}
-        {courts.map((court) => (
-          <div key={court.name} className="flex items-center mb-[2px]">
-            <div className="w-12 flex-shrink-0 pr-1">
-              <span className="text-[4.5px] text-white block leading-tight">{court.name}</span>
-              <span className="text-[3.5px] text-[#94A3B8]">{court.price}</span>
-            </div>
-            <div className="flex-1 flex gap-[1px]">
-              {court.slots.map((slot, si) => (
-                <div
-                  key={si}
-                  className={`flex-1 h-3.5 rounded-sm ${
-                    slot === 2
-                      ? "bg-[#D4804A]/20 border border-[#D4804A]"
-                      : slot === 1
-                      ? "bg-[rgba(148,163,184,0.25)]"
-                      : "bg-white/5"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Legend */}
-      <div className="flex gap-3">
-        <div className="flex items-center gap-1">
-          <div className="w-2 h-2 rounded-sm bg-[rgba(148,163,184,0.25)]" />
-          <span className="text-[5px] text-[#94A3B8]">No disponible</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="w-2 h-2 rounded-sm bg-[#D4804A]/20 border border-[#D4804A]" />
-          <span className="text-[5px] text-[#94A3B8]">Tu reserva</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Nautom Suites — Airbnb-style property marketplace with real photos (light theme) */
-function SuitesMockup() {
-  const properties = [
-    { name: "Centro Lofts I", zone: "Centro", price: "$48.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", img: "/images/suites/a1.webp" },
-    { name: "Vista Park I", zone: "Nueva Córdoba", price: "$55.000", info: "2 dorm. · 1 baño · hasta 4 huésp.", img: "/images/suites/a2.webp" },
-    { name: "Centro Lofts II", zone: "Centro", price: "$52.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", img: "/images/suites/a3.webp" },
-  ];
-
-  return (
-    <div className="absolute inset-0 top-8 overflow-hidden">
-      {/* Light background */}
-      <div className="absolute inset-0 bg-[#F8FAFC]" />
-
-      <div className="relative flex flex-col h-full">
-        {/* Navbar — dark navy */}
-        <div className="flex items-center justify-between px-3 py-1.5 bg-[#0C1B33]">
-          <span className="text-[7px] font-bold text-white tracking-wide">Nautom</span>
-          <div className="bg-[#D4804A] rounded px-2 py-0.5">
-            <span className="text-[5px] text-white font-medium">Ver disponibilidad</span>
-          </div>
-        </div>
-
-        {/* Search bar — Airbnb-style horizontal filters */}
-        <div className="px-2 pt-2 pb-1.5">
-          <div className="flex items-center bg-white rounded-md border border-[#E2E8F0] overflow-hidden">
-            <div className="flex-1 flex items-center">
-              <span className="text-[4.5px] text-[#64748B] px-2">Complejo</span>
-              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
-              <span className="text-[4.5px] text-[#64748B] px-1.5">Llegada</span>
-              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
-              <span className="text-[4.5px] text-[#64748B] px-1.5">Salida</span>
-              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
-              <span className="text-[4.5px] text-[#64748B] px-1.5">Huéspedes</span>
-            </div>
-            <div className="bg-[#1E293B] px-2 py-1 mr-0.5 rounded">
-              <span className="text-[4.5px] text-white font-medium">Buscar</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Property cards grid — marketplace style with real photos */}
-        <div className="flex-1 px-2 pb-1.5 overflow-hidden">
-          <div className="grid grid-cols-3 gap-1.5 h-full">
-            {properties.map((prop) => (
-              <div
-                key={prop.name}
-                className="rounded-lg overflow-hidden flex flex-col bg-white border border-[#E2E8F0]"
-              >
-                {/* Real photo */}
-                <div className="relative" style={{ aspectRatio: "4/3" }}>
-                  <img
-                    src={prop.img}
-                    alt={prop.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-                {/* Card info */}
-                <div className="p-1.5 flex-1 flex flex-col gap-[2px]">
-                  <span className="text-[5.5px] font-bold text-[#1E293B] leading-tight">{prop.name}</span>
-                  <span className="text-[4px] text-[#64748B] leading-tight">{prop.zone}</span>
-                  <span className="text-[4px] text-[#64748B] leading-tight">{prop.info}</span>
-                  <span className="text-[6px] font-bold text-[#D4804A] mt-auto leading-tight">{prop.price} <span className="text-[4px] font-normal text-[#64748B]">/ noche</span></span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Nautom Alojamientos — calendar with channel bookings + WhatsApp assistant */
-function AlojamientosMockup() {
-  const days = ["L", "M", "M", "J", "V", "S", "D"];
-  // start/span are day indexes (0-6); color identifies the booking channel
-  const units = [
-    {
-      name: "Depto 1A",
-      bookings: [
-        { start: 0, span: 3, label: "Airbnb", color: "bg-rose-400/80" },
-        { start: 4, span: 3, label: "Directa", color: "bg-[#D4804A]/80" },
-      ],
-    },
-    {
-      name: "Depto 2B",
-      bookings: [{ start: 1, span: 4, label: "Booking", color: "bg-blue-500/80" }],
-    },
-    {
-      name: "Cabaña 3",
-      bookings: [
-        { start: 0, span: 2, label: "Directa", color: "bg-[#D4804A]/80" },
-        { start: 3, span: 4, label: "Airbnb", color: "bg-rose-400/80" },
-      ],
-    },
-  ];
-
-  return (
-    <div className="absolute inset-0 top-8 bg-gradient-to-br from-white to-slate-50 p-2.5 flex gap-2 overflow-hidden">
-      {/* Calendar panel */}
-      <div className="flex-[3] flex flex-col gap-1.5 min-w-0">
-        <div className="flex items-center justify-between">
-          <span className="text-[7px] font-bold text-[#0C1B33]">Nautom Alojamientos</span>
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-            Sincronizado
-          </span>
-        </div>
-
-        {/* KPIs */}
-        <div className="flex gap-1">
-          {[
-            { label: "Ocupación", value: "86%", color: "text-[#0C1B33]" },
-            { label: "Cobrado", value: "$1.9M", color: "text-emerald-600" },
-            { label: "Check-ins hoy", value: "3", color: "text-[#D4804A]" },
-          ].map((kpi) => (
-            <div key={kpi.label} className="flex-1 bg-white rounded border border-slate-200 p-1">
-              <span className="text-[4.5px] text-slate-400 block">{kpi.label}</span>
-              <span className={`text-[8px] font-bold ${kpi.color}`}>{kpi.value}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Week grid */}
-        <div className="flex-1 bg-white rounded border border-slate-200 p-1.5 flex flex-col gap-1">
-          <div className="flex">
-            <div className="w-9 flex-shrink-0" />
-            {days.map((d, i) => (
-              <span key={i} className="flex-1 text-[4.5px] text-slate-400 text-center">
-                {d}
-              </span>
-            ))}
-          </div>
-          {units.map((unit) => (
-            <div key={unit.name} className="flex items-center">
-              <span className="w-9 flex-shrink-0 text-[4.5px] text-slate-600 font-medium">
-                {unit.name}
-              </span>
-              <div className="flex-1 relative h-3.5 bg-slate-50 rounded-sm">
-                {unit.bookings.map((b, bi) => (
-                  <div
-                    key={bi}
-                    className={`absolute top-0.5 bottom-0.5 rounded-sm ${b.color} flex items-center px-0.5`}
-                    style={{
-                      left: `${(b.start / 7) * 100}%`,
-                      width: `calc(${(b.span / 7) * 100}% - 1px)`,
-                    }}
-                  >
-                    <span className="text-[3.5px] text-white font-medium truncate">{b.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* WhatsApp assistant panel */}
-      <div className="flex-[2] rounded-md overflow-hidden border border-slate-200 flex flex-col min-w-0">
-        <div className="bg-[#075E54] px-1.5 py-1 flex items-center gap-1">
-          <div className="w-3 h-3 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-[4px] text-white font-bold">A</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[5px] text-white font-medium leading-tight">Tu alojamiento</span>
-            <span className="text-[3.5px] text-white/60 leading-tight">Asistente · en línea</span>
-          </div>
-        </div>
-        <div className="flex-1 bg-[#ECE5DD] p-1 flex flex-col gap-1">
-          <div className="self-end max-w-[85%] bg-[#DCF8C6] rounded px-1 py-0.5">
-            <span className="text-[4.5px] text-slate-700 leading-tight block">
-              ¡Hola! ¿A qué hora es el check-in?
-            </span>
-          </div>
-          <div className="self-start max-w-[85%] bg-white rounded px-1 py-0.5">
-            <span className="text-[4.5px] text-slate-700 leading-tight block">
-              ¡Hola Sofía! Es desde las 14 h. Te paso la ubicación y cómo ingresar.
-            </span>
-          </div>
-          <div className="self-end max-w-[85%] bg-[#DCF8C6] rounded px-1 py-0.5">
-            <span className="text-[4.5px] text-slate-700 leading-tight block">¿Puedo llegar antes?</span>
-          </div>
-          <div className="self-start max-w-[85%] bg-white rounded px-1 py-0.5">
-            <span className="text-[4.5px] text-slate-700 leading-tight block">
-              Le consulto al equipo y te confirmamos en un rato.
-            </span>
-          </div>
-          <span className="self-center mt-auto text-[3.5px] text-slate-500 bg-white/70 rounded px-1">
-            Derivado al equipo
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Nautom Lockers — staff panel with locker grid + QR sale + WhatsApp notice */
-function LockersMockup() {
-  // 0 = libre, 1 = ocupado, 2 = recién asignado
-  const lockers = [
-    1, 1, 0, 1, 0, 1,
-    0, 1, 1, 2, 1, 0,
-    1, 0, 1, 1, 0, 1,
-    1, 1, 0, 0, 1, 1,
-  ];
-  const qr = [1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1];
-
-  return (
-    <div className="absolute inset-0 top-8 bg-[#0C1B33] p-2.5 flex gap-2 overflow-hidden">
-      {/* Staff panel */}
-      <div className="flex-[3] flex flex-col gap-1.5 min-w-0">
-        <div className="flex items-center justify-between">
-          <span className="text-[7px] font-bold text-white">Panel del staff</span>
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-[#D4804A]/20 text-[#D4804A] border border-[#D4804A]/30">
-            Evento en curso
-          </span>
-        </div>
-
-        <div className="flex gap-1">
-          {[
-            { label: "Vendidos", value: "412" },
-            { label: "Libres", value: "88" },
-            { label: "Retirados", value: "37" },
-          ].map((kpi) => (
-            <div key={kpi.label} className="flex-1 rounded bg-white/5 border border-white/10 p-1">
-              <span className="text-[4.5px] text-[#94A3B8] block">{kpi.label}</span>
-              <span className="text-[8px] font-bold text-white">{kpi.value}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Locker grid */}
-        <div className="flex-1 rounded bg-white/5 border border-white/10 p-1.5 flex flex-col gap-1">
-          <span className="text-[4.5px] text-[#94A3B8]">Sector B · Casilleros</span>
-          <div className="grid grid-cols-6 gap-[3px] flex-1">
-            {lockers.map((s, i) => (
-              <div
-                key={i}
-                className={`rounded-sm flex items-center justify-center ${
-                  s === 2
-                    ? "bg-[#D4804A]"
-                    : s === 1
-                    ? "bg-[rgba(148,163,184,0.25)]"
-                    : "bg-white/5 border border-white/10"
-                }`}
-              >
-                <span className={`text-[3.5px] ${s === 2 ? "text-white font-bold" : "text-[#94A3B8]"}`}>
-                  B-{String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Customer side: QR payment + WhatsApp notice */}
-      <div className="flex-[2] flex flex-col gap-1.5 min-w-0">
-        <div className="rounded-md bg-white p-1.5 flex items-center gap-1.5">
-          <div className="w-7 h-7 grid grid-cols-5 gap-[1px] flex-shrink-0">
-            {qr.map((c, i) => (
-              <div key={i} className={c ? "bg-[#0C1B33]" : "bg-white"} />
-            ))}
-          </div>
-          <div className="flex flex-col gap-0.5 min-w-0">
-            <span className="text-[5px] font-bold text-[#0C1B33] leading-tight">Guardarropa</span>
-            <span className="text-[4px] text-slate-500 leading-tight">Pagá con Mercado Pago</span>
-            <span className="text-[4px] px-1 py-[1px] rounded bg-sky-500 text-white self-start">
-              Pago aprobado
-            </span>
-          </div>
-        </div>
-
-        <div className="flex-1 rounded-md overflow-hidden flex flex-col">
-          <div className="bg-[#075E54] px-1.5 py-1">
-            <span className="text-[5px] text-white font-medium">Guardarropa · WhatsApp</span>
-          </div>
-          <div className="flex-1 bg-[#ECE5DD] p-1 flex flex-col gap-1">
-            <div className="self-start max-w-[92%] bg-white rounded px-1 py-0.5">
-              <span className="text-[4.5px] text-slate-700 leading-tight block">
-                ¡Listo Martín! Tu casillero es el <b>B-10</b>. Este es tu link personal para retirar.
-              </span>
-            </div>
-            <div className="self-start max-w-[92%] bg-white rounded px-1 py-0.5">
-              <span className="text-[4.5px] text-slate-700 leading-tight block">
-                Recordatorio: el guardarropa cierra a las 02:00 h.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
+  return Captura;
 }
 
 /* ── Product data ────────────────────────────────────────────────────────── */
@@ -522,21 +131,10 @@ const products = [
     description:
       "Plataforma para buscar clubes, comparar disponibilidad y reservar canchas de padel. Calendario semanal, filtros por provincia, duración y franja horaria.",
     differentiators: ["Reserva instantánea", "Calendario semanal", "Filtros inteligentes"],
-    url: "https://padel.nautom.com",
-    cobranded: "Nautom Padel",
+    url: "https://the-padel.app",
+    cobranded: "The Padel App",
     badgeColor: "bg-[#D4804A]/10 text-[#D4804A] border-[#D4804A]/20",
-    Mockup: PadelAppMockup,
-  },
-  {
-    name: "Gestión de Departamentos",
-    tagline: "Reservas simples para complejos temporarios",
-    description:
-      "Sistema de reservas para complejos de departamentos temporarios. Buscador con filtros de complejo, fechas, cantidad de huéspedes. Experiencia estilo Airbnb.",
-    differentiators: ["Buscador avanzado", "Gestión de huéspedes", "Dashboard de reservas"],
-    url: "https://suites.nautom.com",
-    cobranded: "Nautom Suites",
-    badgeColor: "bg-sky-500/10 text-sky-400 border-sky-500/20",
-    Mockup: SuitesMockup,
+    Mockup: capturaDe("/images/productos/padel.webp", "Página principal de The Padel App"),
   },
   {
     name: "Gestión de Alquileres Temporarios",
@@ -547,7 +145,7 @@ const products = [
     url: "https://alojamientos.nautom.com",
     cobranded: "Nautom Alojamientos",
     badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    Mockup: AlojamientosMockup,
+    Mockup: capturaDe("/images/productos/alojamientos.webp", "Página principal de Nautom Alojamientos"),
   },
   {
     name: "Guardarropas para Eventos",
@@ -558,13 +156,13 @@ const products = [
     url: "https://the-locker-company.com",
     cobranded: "Nautom Lockers × Locker Company",
     badgeColor: "bg-[#D4804A]/10 text-[#D4804A] border-[#D4804A]/20",
-    Mockup: LockersMockup,
+    Mockup: capturaDe("/images/productos/lockers.webp", "Página principal de Locker Company"),
   },
 ];
 
 export default function ProductCards() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {products.map((product, i) => (
         <motion.a
           key={product.name}
@@ -574,12 +172,9 @@ export default function ProductCards() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: (i % 3) * 0.15 }}
+          transition={{ duration: 0.5, delay: (i % 2) * 0.15 }}
           whileHover={{ y: -6 }}
-          className={`group relative rounded-2xl border border-card-border overflow-hidden bg-card transition-all duration-300 hover:border-primary/30 flex flex-col lg:col-span-2 ${
-            // 5 cards on a 6-col grid: center the 2-card last row
-            i === 3 ? "lg:col-start-2" : ""
-          }`}
+          className="group relative rounded-2xl border border-card-border overflow-hidden bg-card transition-all duration-300 hover:border-primary/30 flex flex-col"
         >
           {/* Browser mockup with illustrated UI */}
           <div className="relative h-56 overflow-hidden">
