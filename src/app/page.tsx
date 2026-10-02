@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ClientLogos from "@/components/ClientLogos";
 import ProductCards from "@/components/ProductCards";
+import WhatsAppIntegration from "@/components/WhatsAppIntegration";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import CaseTabs from "@/components/CaseTabs";
 import SectionTitle from "@/components/SectionTitle";
@@ -103,6 +104,18 @@ export default function Home() {
             className="mb-12"
           />
           <ProductCards />
+        </div>
+      </section>
+
+      {/* ── 3b. Integraciones con WhatsApp Business ──────────────── */}
+      <section id="whatsapp" className="py-10 md:py-20 border-b border-card-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionTitle
+            title="Integraciones con WhatsApp Business"
+            subtitle="Tus clientes te escriben por WhatsApp. Nuestras plataformas responden y avisan en nombre de tu negocio."
+            className="mb-12"
+          />
+          <WhatsAppIntegration />
         </div>
       </section>
 

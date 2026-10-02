@@ -9,6 +9,12 @@ const footerLinks = [
   { href: "/contact", label: "Contacto" },
 ];
 
+const legalLinks = [
+  { href: "/privacidad", label: "Política de privacidad" },
+  { href: "/terminos", label: "Términos y condiciones" },
+  { href: "/privacidad#eliminacion", label: "Eliminación de datos" },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-card-border">
@@ -59,8 +65,29 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-6 border-t border-card-border text-center">
+        {/* Legal + provider identity + copyright */}
+        <div className="mt-8 pt-6 border-t border-card-border text-center space-y-3">
+          <div className="flex flex-wrap items-center justify-center gap-x-6">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted hover:text-white transition-colors py-3 min-h-[44px] flex items-center"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-muted leading-relaxed">
+            Nautom es un servicio prestado por Ignacio Ramognino · CUIT
+            20-39244092-6 · Ciudad Autónoma de Buenos Aires, Argentina ·{" "}
+            <a
+              href="mailto:nacho@nautom.com"
+              className="hover:text-white underline underline-offset-2 transition-colors"
+            >
+              nacho@nautom.com
+            </a>
+          </p>
           <p className="text-sm text-muted">
             Copyright &copy; {new Date().getFullYear()} Nautom | Todos los derechos reservados
           </p>

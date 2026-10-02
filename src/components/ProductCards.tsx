@@ -281,6 +281,227 @@ function SuitesMockup() {
   );
 }
 
+/** Nautom Alojamientos — calendar with channel bookings + WhatsApp assistant */
+function AlojamientosMockup() {
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
+  // start/span are day indexes (0-6); color identifies the booking channel
+  const units = [
+    {
+      name: "Depto 1A",
+      bookings: [
+        { start: 0, span: 3, label: "Airbnb", color: "bg-rose-400/80" },
+        { start: 4, span: 3, label: "Directa", color: "bg-[#D4804A]/80" },
+      ],
+    },
+    {
+      name: "Depto 2B",
+      bookings: [{ start: 1, span: 4, label: "Booking", color: "bg-blue-500/80" }],
+    },
+    {
+      name: "Cabaña 3",
+      bookings: [
+        { start: 0, span: 2, label: "Directa", color: "bg-[#D4804A]/80" },
+        { start: 3, span: 4, label: "Airbnb", color: "bg-rose-400/80" },
+      ],
+    },
+  ];
+
+  return (
+    <div className="absolute inset-0 top-8 bg-gradient-to-br from-white to-slate-50 p-2.5 flex gap-2 overflow-hidden">
+      {/* Calendar panel */}
+      <div className="flex-[3] flex flex-col gap-1.5 min-w-0">
+        <div className="flex items-center justify-between">
+          <span className="text-[7px] font-bold text-[#0C1B33]">Nautom Alojamientos</span>
+          <span className="text-[5px] px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Sincronizado
+          </span>
+        </div>
+
+        {/* KPIs */}
+        <div className="flex gap-1">
+          {[
+            { label: "Ocupación", value: "86%", color: "text-[#0C1B33]" },
+            { label: "Cobrado", value: "$1.9M", color: "text-emerald-600" },
+            { label: "Check-ins hoy", value: "3", color: "text-[#D4804A]" },
+          ].map((kpi) => (
+            <div key={kpi.label} className="flex-1 bg-white rounded border border-slate-200 p-1">
+              <span className="text-[4.5px] text-slate-400 block">{kpi.label}</span>
+              <span className={`text-[8px] font-bold ${kpi.color}`}>{kpi.value}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Week grid */}
+        <div className="flex-1 bg-white rounded border border-slate-200 p-1.5 flex flex-col gap-1">
+          <div className="flex">
+            <div className="w-9 flex-shrink-0" />
+            {days.map((d, i) => (
+              <span key={i} className="flex-1 text-[4.5px] text-slate-400 text-center">
+                {d}
+              </span>
+            ))}
+          </div>
+          {units.map((unit) => (
+            <div key={unit.name} className="flex items-center">
+              <span className="w-9 flex-shrink-0 text-[4.5px] text-slate-600 font-medium">
+                {unit.name}
+              </span>
+              <div className="flex-1 relative h-3.5 bg-slate-50 rounded-sm">
+                {unit.bookings.map((b, bi) => (
+                  <div
+                    key={bi}
+                    className={`absolute top-0.5 bottom-0.5 rounded-sm ${b.color} flex items-center px-0.5`}
+                    style={{
+                      left: `${(b.start / 7) * 100}%`,
+                      width: `calc(${(b.span / 7) * 100}% - 1px)`,
+                    }}
+                  >
+                    <span className="text-[3.5px] text-white font-medium truncate">{b.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* WhatsApp assistant panel */}
+      <div className="flex-[2] rounded-md overflow-hidden border border-slate-200 flex flex-col min-w-0">
+        <div className="bg-[#075E54] px-1.5 py-1 flex items-center gap-1">
+          <div className="w-3 h-3 rounded-full bg-white/20 flex items-center justify-center">
+            <span className="text-[4px] text-white font-bold">A</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[5px] text-white font-medium leading-tight">Tu alojamiento</span>
+            <span className="text-[3.5px] text-white/60 leading-tight">Asistente · en línea</span>
+          </div>
+        </div>
+        <div className="flex-1 bg-[#ECE5DD] p-1 flex flex-col gap-1">
+          <div className="self-end max-w-[85%] bg-[#DCF8C6] rounded px-1 py-0.5">
+            <span className="text-[4.5px] text-slate-700 leading-tight block">
+              ¡Hola! ¿A qué hora es el check-in?
+            </span>
+          </div>
+          <div className="self-start max-w-[85%] bg-white rounded px-1 py-0.5">
+            <span className="text-[4.5px] text-slate-700 leading-tight block">
+              ¡Hola Sofía! Es desde las 14 h. Te paso la ubicación y cómo ingresar.
+            </span>
+          </div>
+          <div className="self-end max-w-[85%] bg-[#DCF8C6] rounded px-1 py-0.5">
+            <span className="text-[4.5px] text-slate-700 leading-tight block">¿Puedo llegar antes?</span>
+          </div>
+          <div className="self-start max-w-[85%] bg-white rounded px-1 py-0.5">
+            <span className="text-[4.5px] text-slate-700 leading-tight block">
+              Le consulto al equipo y te confirmamos en un rato.
+            </span>
+          </div>
+          <span className="self-center mt-auto text-[3.5px] text-slate-500 bg-white/70 rounded px-1">
+            Derivado al equipo
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Nautom Lockers — staff panel with locker grid + QR sale + WhatsApp notice */
+function LockersMockup() {
+  // 0 = libre, 1 = ocupado, 2 = recién asignado
+  const lockers = [
+    1, 1, 0, 1, 0, 1,
+    0, 1, 1, 2, 1, 0,
+    1, 0, 1, 1, 0, 1,
+    1, 1, 0, 0, 1, 1,
+  ];
+  const qr = [1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1];
+
+  return (
+    <div className="absolute inset-0 top-8 bg-[#0C1B33] p-2.5 flex gap-2 overflow-hidden">
+      {/* Staff panel */}
+      <div className="flex-[3] flex flex-col gap-1.5 min-w-0">
+        <div className="flex items-center justify-between">
+          <span className="text-[7px] font-bold text-white">Panel del staff</span>
+          <span className="text-[5px] px-1.5 py-0.5 rounded bg-[#D4804A]/20 text-[#D4804A] border border-[#D4804A]/30">
+            Evento en curso
+          </span>
+        </div>
+
+        <div className="flex gap-1">
+          {[
+            { label: "Vendidos", value: "412" },
+            { label: "Libres", value: "88" },
+            { label: "Retirados", value: "37" },
+          ].map((kpi) => (
+            <div key={kpi.label} className="flex-1 rounded bg-white/5 border border-white/10 p-1">
+              <span className="text-[4.5px] text-[#94A3B8] block">{kpi.label}</span>
+              <span className="text-[8px] font-bold text-white">{kpi.value}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Locker grid */}
+        <div className="flex-1 rounded bg-white/5 border border-white/10 p-1.5 flex flex-col gap-1">
+          <span className="text-[4.5px] text-[#94A3B8]">Sector B · Casilleros</span>
+          <div className="grid grid-cols-6 gap-[3px] flex-1">
+            {lockers.map((s, i) => (
+              <div
+                key={i}
+                className={`rounded-sm flex items-center justify-center ${
+                  s === 2
+                    ? "bg-[#D4804A]"
+                    : s === 1
+                    ? "bg-[rgba(148,163,184,0.25)]"
+                    : "bg-white/5 border border-white/10"
+                }`}
+              >
+                <span className={`text-[3.5px] ${s === 2 ? "text-white font-bold" : "text-[#94A3B8]"}`}>
+                  B-{String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Customer side: QR payment + WhatsApp notice */}
+      <div className="flex-[2] flex flex-col gap-1.5 min-w-0">
+        <div className="rounded-md bg-white p-1.5 flex items-center gap-1.5">
+          <div className="w-7 h-7 grid grid-cols-5 gap-[1px] flex-shrink-0">
+            {qr.map((c, i) => (
+              <div key={i} className={c ? "bg-[#0C1B33]" : "bg-white"} />
+            ))}
+          </div>
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-[5px] font-bold text-[#0C1B33] leading-tight">Guardarropa</span>
+            <span className="text-[4px] text-slate-500 leading-tight">Pagá con Mercado Pago</span>
+            <span className="text-[4px] px-1 py-[1px] rounded bg-sky-500 text-white self-start">
+              Pago aprobado
+            </span>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-md overflow-hidden flex flex-col">
+          <div className="bg-[#075E54] px-1.5 py-1">
+            <span className="text-[5px] text-white font-medium">Guardarropa · WhatsApp</span>
+          </div>
+          <div className="flex-1 bg-[#ECE5DD] p-1 flex flex-col gap-1">
+            <div className="self-start max-w-[92%] bg-white rounded px-1 py-0.5">
+              <span className="text-[4.5px] text-slate-700 leading-tight block">
+                ¡Listo Martín! Tu casillero es el <b>B-10</b>. Este es tu link personal para retirar.
+              </span>
+            </div>
+            <div className="self-start max-w-[92%] bg-white rounded px-1 py-0.5">
+              <span className="text-[4.5px] text-slate-700 leading-tight block">
+                Recordatorio: el guardarropa cierra a las 02:00 h.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Product data ────────────────────────────────────────────────────────── */
 
 const products = [
@@ -317,11 +538,33 @@ const products = [
     badgeColor: "bg-sky-500/10 text-sky-400 border-sky-500/20",
     Mockup: SuitesMockup,
   },
+  {
+    name: "Gestión de Alquileres Temporarios",
+    tagline: "Tu alojamiento, atendido las 24 horas",
+    description:
+      "Reservas, cobros y calendario sincronizado con las plataformas de alquiler. Incluye un asistente de WhatsApp Business que responde a los huéspedes en nombre del alojamiento y deriva al equipo cuando hace falta.",
+    differentiators: ["Asistente de WhatsApp", "Calendario sincronizado", "Cobros integrados"],
+    url: "https://alojamientos.nautom.com",
+    cobranded: "Nautom Alojamientos",
+    badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    Mockup: AlojamientosMockup,
+  },
+  {
+    name: "Guardarropas para Eventos",
+    tagline: "Lockers self-service para eventos masivos",
+    description:
+      "Venta por QR con Mercado Pago, asignación automática de casilleros y panel para el staff. Avisos y asistente por WhatsApp Business: casillero asignado, link personal, recordatorios y derivación al staff.",
+    differentiators: ["Venta por QR", "Avisos por WhatsApp", "Panel del staff"],
+    url: "https://the-locker-company.com",
+    cobranded: "Nautom Lockers × Locker Company",
+    badgeColor: "bg-[#D4804A]/10 text-[#D4804A] border-[#D4804A]/20",
+    Mockup: LockersMockup,
+  },
 ];
 
 export default function ProductCards() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
       {products.map((product, i) => (
         <motion.a
           key={product.name}
@@ -331,9 +574,12 @@ export default function ProductCards() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: i * 0.15 }}
+          transition={{ duration: 0.5, delay: (i % 3) * 0.15 }}
           whileHover={{ y: -6 }}
-          className="group relative rounded-2xl border border-card-border overflow-hidden bg-card transition-all duration-300 hover:border-primary/30 flex flex-col"
+          className={`group relative rounded-2xl border border-card-border overflow-hidden bg-card transition-all duration-300 hover:border-primary/30 flex flex-col lg:col-span-2 ${
+            // 5 cards on a 6-col grid: center the 2-card last row
+            i === 3 ? "lg:col-start-2" : ""
+          }`}
         >
           {/* Browser mockup with illustrated UI */}
           <div className="relative h-56 overflow-hidden">
