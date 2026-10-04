@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Nautom — Estudio de servicios de IA para empresas argentinas",
   description:
-    "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construimos los sistemas, agentes y automatizaciones que sacan el trabajo manual de tu operación, y los seguimos mejorando.",
+    "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Sistemas a medida y agentes de IA para sacar trabajo manual de tu operación. Los construimos y seguimos mejorando con vos.",
   keywords: [
     "estudio de servicios de IA",
     "IA para empresas Argentina",
@@ -83,7 +83,7 @@ const siteJsonLd = {
         height: 512,
       },
       description:
-        "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construye sistemas de gestión a medida, agentes de IA y automatizaciones que sacan el trabajo manual de la operación, y los sigue mejorando. También construye y opera productos digitales con integración de WhatsApp Business.",
+        "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construye sistemas de gestión a medida, agentes de IA, automatizaciones y tableros para sacar trabajo manual de la operación, y los sigue mejorando con cada equipo. También construye y opera productos digitales con integración de WhatsApp Business.",
       foundingDate: "2023",
       foundingLocation: { "@type": "Place", name: "Buenos Aires, Argentina" },
       founder: founders.map(({ id }) => ({ "@id": id })),

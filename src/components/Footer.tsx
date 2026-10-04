@@ -3,11 +3,9 @@ import Link from "next/link";
 
 const footerLinks = [
   { href: "/#que-hacemos", label: "Qué hacemos" },
-  { href: "/#casos", label: "Casos" },
-  { href: "/#como-trabajamos", label: "Cómo trabajamos" },
-  { href: "/#productos", label: "Productos digitales" },
-  { href: "/#whatsapp", label: "WhatsApp Business" },
-  { href: "/#equipo", label: "Equipo" },
+  { href: "/casos", label: "Casos" },
+  { href: "/productos", label: "Productos" },
+  { href: "/productos#whatsapp", label: "WhatsApp Business" },
   { href: "/about", label: "Nosotros" },
   { href: "/#preguntas", label: "Preguntas" },
   { href: "/contact", label: "Contacto" },

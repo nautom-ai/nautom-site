@@ -20,17 +20,19 @@ ${services}
 
 ## Casos
 
-- [El Jumillano](${SITE_URL}/#casos): distribuidor #1 de Agua IVESS, con casi 600 personas y 4 sociedades. La operación que atiende a sus 158.000 clientes activos corre sobre el sistema que construyó Nautom: liquidaciones del personal, distribución diaria, personal y asistencia, atención, calidad y ventas, conectado a unos 10 sistemas.
-- [Impacto Positivo · Impacto+](${SITE_URL}/#casos): más de 2.000 servicios activos y cero intervención manual en la facturación mensual.
-- [Altis Viajes](${SITE_URL}/#casos): sistema de gestión de la agencia, con cotizaciones que el cliente acepta online e IA que extrae los datos de facturas, itinerarios y liquidaciones de operadores.
-- [Peerforum · Pulse](${SITE_URL}/#casos): sistema de gestión y monitoreo de los foros, la asistencia y las acciones de retención, con segmentación de miembros por compromiso y riesgo de baja.
+- [El Jumillano](${SITE_URL}/casos#c-jum): distribuidor #1 de Agua IVESS, con casi 600 personas y 4 sociedades. La operación que atiende a sus 158.000 clientes activos corre sobre el sistema que construyó Nautom: liquidaciones del personal, distribución diaria, personal y asistencia, atención, calidad y ventas, conectado a unos 10 sistemas.
+- [Impacto Positivo · Impacto+](${SITE_URL}/casos#c-imp): más de 2.000 servicios activos y cero intervención manual en la facturación mensual.
+- [Altis Viajes](${SITE_URL}/casos#c-alt): sistema de gestión de la agencia, con cotizaciones que el cliente acepta online e IA que extrae los datos de facturas, itinerarios y liquidaciones de operadores.
+- [Peerforum · Pulse](${SITE_URL}/casos#c-pul): sistema de gestión y monitoreo de los foros, la asistencia y las acciones de retención, con segmentación de miembros por compromiso y riesgo de baja.
 
 ## Páginas
 
-- [Inicio](${SITE_URL}/): qué es Nautom, qué hace, casos, método y equipo.
-- [Cómo trabajamos](${SITE_URL}/#como-trabajamos): los cuatro pasos del servicio.
+- [Inicio](${SITE_URL}/): servicios, selección de casos, productos y preguntas frecuentes.
+- [Casos](${SITE_URL}/casos): el detalle de los sistemas que construimos y capturas reales.
+- [Productos](${SITE_URL}/productos): Locker Company, Nautom Alojamientos y Nautom Gestión.
+- [WhatsApp Business](${SITE_URL}/productos#whatsapp): cómo operamos las integraciones en nombre de cada negocio.
 - [Preguntas frecuentes](${SITE_URL}/#preguntas): plazos, costos, herramientas y qué pasa después de la entrega.
-- [Nosotros](${SITE_URL}/about): quiénes somos y qué nos define.
+- [Nosotros](${SITE_URL}/about): quiénes somos, cómo trabajamos y qué nos define.
 - [Contacto](${SITE_URL}/contact): formulario para contar un caso.
 
 ## Optional

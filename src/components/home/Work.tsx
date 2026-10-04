@@ -1,41 +1,35 @@
+import Link from "next/link";
 import { SERVICES } from "@/lib/services";
-import Cases from "./Cases";
-import { OFFSET, SectionHead } from "./ui";
-
-// Qué hacemos · camino principal: qué incluye el servicio (src/lib/services.ts)
-// y los casos actuales.
+import { Alias, ArrowIcon, Label } from "./ui";
 
 export default function Work() {
   return (
-    <section
-      id="que-hacemos"
-      aria-labelledby="que-hacemos-title"
-      className="on-light bg-surface py-sec text-ink"
-    >
+    <section id="que-hacemos" aria-labelledby="work-title" className="on-light relative bg-surface py-16 text-ink md:py-24">
       <div className="wrap">
-        <SectionHead
-          tone="surface"
-          label="Qué hacemos"
-          title="IA en tu operación."
-          titleId="que-hacemos-title"
-          lead="Construimos los sistemas, agentes y automatizaciones que le sacan trabajo manual a tu equipo, conectados a lo que ya usa. Es el centro de nuestro trabajo."
-        />
-
-        <ul
-          aria-label="Qué incluye"
-          className={`mt-[clamp(36px,3.6vw,52px)] grid grid-cols-2 gap-x-7 gap-y-6 wide:grid-cols-4 ${OFFSET}`}
-        >
-          {SERVICES.map(({ title, text }) => (
-            <li key={title} className="min-w-0 border-t-2 border-ink pt-3.5">
-              <h3 className="text-base leading-[1.35] font-semibold tracking-[-0.005em] text-ink">
-                {title}
-              </h3>
-              <p className="mt-1.5 text-[14.5px] leading-[1.55] text-ink-2">{text}</p>
+        <div className="grid gap-5 md:grid-cols-[1fr_2fr] md:gap-12">
+          <Label tone="surface" copper className="md:pt-2">01 / Qué hacemos</Label>
+          <h2 id="work-title" className="max-w-[25ch] font-mono text-[clamp(27px,3vw,40px)] leading-tight font-bold tracking-[-0.035em]">
+            Tu operación, con menos trabajo manual.
+          </h2>
+        </div>
+        <ul className="mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+          {SERVICES.map(({ title, text }, i) => (
+            <li key={title} className="border-t border-line pt-5">
+              <span className="font-mono text-xs text-accent-700" aria-hidden="true">0{i + 1}</span>
+              <h3 className="mt-4 text-lg font-semibold leading-snug">{title}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{text}</p>
             </li>
           ))}
         </ul>
-
-        <Cases />
+        <div id="como-trabajamos" className="relative mt-10 flex flex-col gap-4 border-t border-line pt-6 md:mt-12 md:flex-row md:items-center md:justify-between md:gap-10">
+          <Alias id="how" />
+          <p className="max-w-[65ch] text-[15px] leading-relaxed text-ink-2">
+            Entendemos tu operación, elegimos por dónde empezar y lo construimos con vos. Después, seguimos mejorándolo.
+          </p>
+          <Link href="/about" className="group inline-flex min-h-11 shrink-0 items-center gap-3 text-sm font-semibold underline underline-offset-4">
+            Cómo trabajamos <ArrowIcon size={16} />
+          </Link>
+        </div>
       </div>
     </section>
   );
