@@ -46,7 +46,7 @@ export default function Contact() {
 
   return (
     <section className="py-6 md:py-12">
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="max-w-3xl mx-auto px-gutter">
         {/* Back button */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Nautom — Estudio de tecnología AI-first";
+export const alt = "Nautom — Estudio de servicios de IA";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -95,7 +95,7 @@ export default async function Image() {
             marginTop: "32px",
           }}
         >
-          Estudio de tecnología AI-first
+          Estudio de servicios de IA
         </span>
       </div>
     ),

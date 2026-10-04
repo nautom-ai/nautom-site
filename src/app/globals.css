@@ -19,10 +19,56 @@
   /* Derived UI surfaces (dark theme) */
   --color-card: rgba(30, 58, 95, 0.2);
   --color-card-border: rgba(139, 157, 181, 0.12);
+  --color-navy-950: #081326;
+
+  /* Derived neutrals for light sections (navy / copper bias) */
+  --color-paper: #F2EFE9;
+  --color-ink: #0C1B33;
+  --color-ink-2: #34445C;
+  --color-ink-3: #56637A;
+  --color-line: #DCD6CC;
+  --color-line-soft: #E7E2D9;
 
   /* Typography */
   --font-mono: var(--font-space-mono), monospace;
   --font-sans: var(--font-inter), sans-serif;
+}
+
+/* Home: type scale, rail layout and breakpoints */
+@theme {
+  --text-h1: clamp(30px, 3.34vw, 48px);
+  --text-h2: clamp(26px, 3vw, 42px);
+  --text-h2-sm: clamp(23px, 2.3vw, 32px);
+  --text-statement: clamp(23px, 2.65vw, 38px);
+  --text-lead: clamp(17px, 1.35vw, 19px);
+
+  --spacing-gutter: clamp(16px, 4.4vw, 64px);
+  --spacing-sec: clamp(64px, 8vw, 120px);
+  --spacing-rail: 180px;
+  --spacing-offset: 228px;
+
+  /* rail: ≥961px, columns with the left rail · wide: ≥1101px · nav: ≥1181px, inline nav links */
+  --breakpoint-rail: 60.0625rem;
+  --breakpoint-wide: 68.8125rem;
+  --breakpoint-nav: 73.8125rem;
+}
+
+/* Content column: 1200px plus gutters */
+@utility wrap {
+  width: 100%;
+  max-width: calc(1200px + 2 * var(--spacing-gutter));
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Small uppercase mono label */
+@utility label-mono {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 @layer base {
@@ -30,6 +76,16 @@
     background-color: #0C1B33;
     color: #E8E4DC;
     font-family: var(--font-inter), sans-serif;
+  }
+
+  /* In the base layer so rounded-* and focus:outline-none still win */
+  :focus-visible {
+    outline: 2px solid #D4804A;
+    outline-offset: 3px;
+  }
+
+  .on-light :focus-visible {
+    outline-color: #A35E30;
   }
 }
 
@@ -65,9 +121,27 @@
   border-radius: 3px;
 }
 
-/* Smooth scroll */
+/* Smooth scroll; anchors clear the sticky nav */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: 2px;
+  background: #D4804A;
+  color: #0C1B33;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 12px;
 }
 
 /* Floating animations for UI fragments — three depth layers */
@@ -88,21 +162,14 @@ html {
 .animate-float-mg { animation: float-mg 4.5s ease-in-out infinite; }
 .animate-float-bg { animation: float-bg 7s ease-in-out infinite; }
 
-/* Scroll hint bounce */
-@keyframes scroll-hint-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
-}
-
-.scroll-hint-bounce {
-  animation: scroll-hint-bounce 2s ease-in-out infinite;
-}
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .animate-float-fg,
   .animate-float-mg,
-  .animate-float-bg,
-  .scroll-hint-bounce {
+  .animate-float-bg {
     animation: none;
   }
 }

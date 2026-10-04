@@ -7,7 +7,7 @@ interface LegalSectionProps {
 /** Section block for legal pages (/privacidad, /terminos) — same typography as /about */
 export default function LegalSection({ id, title, children }: LegalSectionProps) {
   return (
-    <section id={id} className="scroll-mt-24 space-y-4">
+    <section id={id} className="space-y-4">
       <div className="pipe-copper">
         <h2 className="text-xl md:text-2xl font-mono font-bold text-white">
           {title}

@@ -4,10 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-// GridOverlay removed — clean Navy Deep background
-// import GridOverlay from "@/components/GridOverlay";
-import FloatingCTA from "@/components/FloatingCTA";
-import { SITE_URL } from "@/lib/site";
+import { OPEN_GRAPH_BASE, SITE_URL } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -26,19 +23,18 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Nautom — Estudio de tecnología AI-first | Productos y proyectos a medida",
+  title: "Nautom — Estudio de servicios de IA para empresas argentinas",
   description:
-    "Estudio de tecnología que construye productos propios y proyectos a medida con enfoque AI-first. Gestión financiera, reservas, automatización y más para PyMEs argentinas.",
+    "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construimos los sistemas, agentes y automatizaciones que sacan el trabajo manual de tu operación, y los seguimos mejorando.",
   keywords: [
-    "estudio tecnología Argentina",
-    "productos digitales PyMEs",
-    "proyectos a medida",
-    "AI-first development",
+    "estudio de servicios de IA",
+    "IA para empresas Argentina",
+    "sistemas de gestión a medida",
     "agentes de IA Argentina",
+    "automatización de procesos",
     "automatización PyMEs",
-    "gestión financiera PyMEs",
+    "WhatsApp Business",
     "Nautom",
-    "Next.js Supabase",
   ],
   icons: {
     icon: [
@@ -48,19 +44,17 @@ export const metadata: Metadata = {
     apple: "/favicon-512.svg",
   },
   openGraph: {
-    title: "Nautom — Estudio de tecnología AI-first",
+    title: "Nautom — Estudio de servicios de IA",
     description:
-      "Construimos productos propios y proyectos a medida con enfoque AI-first para PyMEs argentinas.",
-    url: SITE_URL,
-    siteName: "Nautom",
-    locale: "es_AR",
-    type: "website",
+      "Sistemas y agentes de IA para que tu operación deje de depender de planillas. Para empresas argentinas de 50 a 600 personas.",
+    url: "/",
+    ...OPEN_GRAPH_BASE,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nautom — Estudio de tecnología AI-first",
+    title: "Nautom — Estudio de servicios de IA",
     description:
-      "Construimos productos propios y proyectos a medida con enfoque AI-first para PyMEs argentinas.",
+      "Sistemas y agentes de IA para que tu operación deje de depender de planillas. Para empresas argentinas de 50 a 600 personas.",
   },
 };
 
@@ -70,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${spaceMono.variable} ${inter.variable}`}>
+    <html lang="es" data-scroll-behavior="smooth" className={`${spaceMono.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -81,11 +75,11 @@ export default function RootLayout({
               name: "Nautom",
               url: SITE_URL,
               description:
-                "Estudio de tecnología AI-first que construye productos propios y proyectos a medida para PyMEs argentinas. Gestión financiera, reservas, automatización y agentes de IA.",
+                "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construye sistemas de gestión a medida, agentes de IA y automatizaciones que sacan el trabajo manual de la operación, y los sigue mejorando. También construye y opera productos digitales con integración de WhatsApp Business.",
               foundingDate: "2023",
               founders: [
-                { "@type": "Person", name: "Juan" },
-                { "@type": "Person", name: "Nacho" },
+                { "@type": "Person", name: "Juan Gómez Naar" },
+                { "@type": "Person", name: "Ignacio Ramognino" },
               ],
               areaServed: {
                 "@type": "Country",
@@ -95,33 +89,35 @@ export default function RootLayout({
                 "Inteligencia artificial para empresas",
                 "Agentes de IA",
                 "Automatización de procesos",
-                "Desarrollo de aplicaciones internas",
-                "Sistemas de gestión para PyMEs",
+                "Sistemas de gestión a medida",
+                "Integración con WhatsApp Business",
                 "AI agents",
                 "Business automation",
-                "Python",
-                "Vercel",
+                "Next.js",
                 "Supabase",
-                "Railway",
+                "Vercel",
+                "Python",
               ],
               serviceType: [
-                "Productos digitales propios",
-                "Proyectos a medida",
+                "Sistemas de gestión a medida",
                 "Agentes de inteligencia artificial",
                 "Automatización de procesos empresariales",
-                "Desarrollo de aplicaciones internas",
-                "Gestión financiera para PyMEs",
+                "Tableros de gestión",
+                "Productos digitales a medida",
+                "Integración con WhatsApp Business",
               ],
             }),
           }}
         />
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground antialiased min-h-screen font-sans">
+        <a href="#contenido" className="skip-link">
+          Saltar al contenido
+        </a>
         <div className="relative">
           <Navbar />
           <PageTransition>{children}</PageTransition>
           <Footer />
-          <FloatingCTA />
         </div>
         <Analytics />
         <SpeedInsights />
