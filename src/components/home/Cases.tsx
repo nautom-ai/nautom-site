@@ -4,8 +4,7 @@ import { Alias, ButtonLink, Label } from "./ui";
 // Casos actuales (dentro de «Qué hacemos»). El Jumillano va como caso grande;
 // los otros tres son datos y la captura es opcional: sin `shot`, la tarjeta
 // queda completa con el texto. Las capturas van después del texto y la cifra,
-// así el caso se entiende aunque la imagen no cargue. Las de Impacto+, Altis y
-// Pulse esperan el permiso de cada cliente para mostrar sus pantallas.
+// así el caso se entiende aunque la imagen no cargue.
 
 type Shot = { src: string; alt: string; width: number; height: number; caption: string };
 
@@ -26,6 +25,13 @@ const smallCases: SmallCase[] = [
         text: "Todo el motor financiero, desde la cobranza hasta la facturación, y un espacio de operación con clientes, visitas, productos y precios, pendientes de facturación y tableros.",
       },
     ],
+    shot: {
+      src: "/images/casos/impacto-dashboard.webp",
+      alt: "Tableros de Impacto+: servicios registrados, activos y de baja, y un gráfico de altas y bajas de servicios de los últimos 12 meses.",
+      width: 1600,
+      height: 875,
+      caption: "Tableros de servicios activos y de baja, con sus altas y bajas mes a mes.",
+    },
   },
   {
     id: "c-alt",
@@ -41,6 +47,14 @@ const smallCases: SmallCase[] = [
         text: "Extrae los datos de facturas, itinerarios y liquidaciones de operadores.",
       },
     ],
+    shot: {
+      src: "/images/casos/altis-panorama.webp",
+      alt: "Panorama de la agencia en el sistema de Altis Viajes: files abiertos, viajes que salen en los próximos 30 días, cotizaciones aceptadas y la lista de files en operación con su saldo.",
+      width: 1600,
+      height: 913,
+      caption:
+        "Panorama de la agencia: files abiertos, viajes de los próximos 30 días y cotizaciones en curso.",
+    },
   },
   {
     id: "c-pul",
@@ -56,6 +70,13 @@ const smallCases: SmallCase[] = [
         text: "Agrupa a los miembros según su compromiso y su riesgo de baja.",
       },
     ],
+    shot: {
+      src: "/images/casos/pulse-segmentos.webp",
+      alt: "Matriz de segmentación de Pulse: los miembros activos de Peerforum agrupados por nivel de compromiso y antigüedad, con la cantidad de cada grupo.",
+      width: 1600,
+      height: 1109,
+      caption: "Segmentación de los miembros activos por compromiso y antigüedad.",
+    },
   },
 ];
 
