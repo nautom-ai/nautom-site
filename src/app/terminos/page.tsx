@@ -14,7 +14,7 @@ export default function Terminos() {
     <>
       {/* Header */}
       <section className="py-10 md:py-28 border-b border-card-border">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="wrap">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold leading-tight text-white">
               Términos y condiciones
@@ -34,7 +34,7 @@ export default function Terminos() {
       </section>
 
       <section className="py-10 md:py-20 border-b border-card-border">
-        <div className="max-w-3xl mx-auto px-6 space-y-12">
+        <div className="max-w-3xl mx-auto px-gutter space-y-12">
           <LegalSection title="1. Quién presta el servicio">
             <p>
               Nautom es un servicio prestado por <strong>Ignacio Ramognino</strong>,

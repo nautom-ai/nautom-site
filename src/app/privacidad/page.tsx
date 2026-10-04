@@ -13,7 +13,7 @@ export default function Privacidad() {
     <>
       {/* Header */}
       <section className="py-10 md:py-28 border-b border-card-border">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="wrap">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold leading-tight text-white">
               Política de privacidad
@@ -33,7 +33,7 @@ export default function Privacidad() {
       </section>
 
       <section className="py-10 md:py-20 border-b border-card-border">
-        <div className="max-w-3xl mx-auto px-6 space-y-12">
+        <div className="max-w-3xl mx-auto px-gutter space-y-12">
           <LegalSection title="1. Quién es el responsable">
             <p>
               Nautom es un servicio prestado por <strong>Ignacio Ramognino</strong>,

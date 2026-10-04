@@ -2,13 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/#products", label: "Productos" },
-  { href: "/#cases", label: "Proyectos" },
-  { href: "/#about", label: "Nosotros" },
+  { href: "/#que-hacemos", label: "Qué hacemos" },
+  { href: "/#casos", label: "Casos" },
+  { href: "/#como-trabajamos", label: "Cómo trabajamos" },
+  { href: "/#productos", label: "Productos digitales" },
+  { href: "/#whatsapp", label: "WhatsApp Business" },
+  { href: "/#equipo", label: "Equipo" },
+  { href: "/about", label: "Nosotros" },
+  { href: "/#preguntas", label: "Preguntas" },
   { href: "/contact", label: "Contacto" },
 ];
 
+// Meta revisa estas URLs y los datos del prestador de abajo (verificación de Tech Provider).
 const legalLinks = [
   { href: "/privacidad", label: "Política de privacidad" },
   { href: "/terminos", label: "Términos y condiciones" },
@@ -17,78 +22,72 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-card-border">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* NAUTOM Logo — official SVG wordmark */}
-          <Link href="/" aria-label="Nautom">
+    <footer className="bg-navy-950 pt-12 pb-9 text-sm text-muted">
+      <div className="wrap">
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
+          <Link href="/" aria-label="Nautom, inicio" className="flex min-h-[44px] items-center">
             <Image
               src="/logo-white-copper.svg"
               alt="Nautom"
-              width={120}
+              width={138}
               height={14}
               className="h-3.5 w-auto"
-              style={{ width: "auto" }}
             />
           </Link>
 
-          {/* Links */}
-          <div className="flex items-center gap-6">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted hover:text-white transition-colors py-3 min-h-[44px] flex items-center"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Pie">
+            <ul className="flex flex-wrap gap-x-[22px]">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="inline-flex min-h-[44px] items-center transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/company/nautom"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full border border-card-border flex items-center justify-center hover:border-primary transition-colors"
-            aria-label="LinkedIn"
+            aria-label="Nautom en LinkedIn"
+            className="inline-flex h-11 w-11 items-center justify-center rounded border border-foreground/16 transition-colors hover:text-foreground"
           >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-muted"
-            >
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
             </svg>
           </a>
         </div>
 
         {/* Legal + provider identity + copyright */}
-        <div className="mt-8 pt-6 border-t border-card-border text-center space-y-3">
-          <div className="flex flex-wrap items-center justify-center gap-x-6">
+        <div className="mt-6 grid gap-1.5 border-t border-foreground/16 pt-5">
+          <ul className="flex flex-wrap gap-x-6">
             {legalLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted hover:text-white transition-colors py-3 min-h-[44px] flex items-center"
-              >
-                {link.label}
-              </Link>
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="inline-flex min-h-[44px] items-center transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </li>
             ))}
-          </div>
-          <p className="text-xs text-muted leading-relaxed">
+          </ul>
+          <p className="text-xs leading-[1.6]">
             Nautom es un servicio prestado por Ignacio Ramognino · CUIT
             20-39244092-6 · Ciudad Autónoma de Buenos Aires, Argentina ·{" "}
             <a
               href="mailto:nacho@nautom.com"
-              className="hover:text-white underline underline-offset-2 transition-colors"
+              className="underline underline-offset-2 transition-colors hover:text-foreground"
             >
               nacho@nautom.com
             </a>
           </p>
-          <p className="text-sm text-muted">
+          <p className="text-xs leading-[1.6]">
             Copyright &copy; {new Date().getFullYear()} Nautom | Todos los derechos reservados
           </p>
         </div>

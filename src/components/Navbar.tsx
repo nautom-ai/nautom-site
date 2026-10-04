@@ -1,108 +1,139 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Logo from "./Logo";
+import { useEffect, useRef, useState } from "react";
+import { ArrowIcon } from "./home/ui";
 
+// Los links apuntan a secciones de la home; con "/#…" también funcionan desde las otras páginas.
 const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/#products", label: "Productos" },
-  { href: "/#cases", label: "Proyectos" },
-  { href: "/#about", label: "Nosotros" },
+  { href: "/#que-hacemos", label: "Qué hacemos" },
+  { href: "/#casos", label: "Casos" },
+  { href: "/#como-trabajamos", label: "Cómo trabajamos" },
+  { href: "/#productos", label: "Productos", mobileLabel: "Productos digitales" },
+  { href: "/#equipo", label: "Equipo" },
+  { href: "/#preguntas", label: "Preguntas" },
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Se cierra también al cambiar de página o de ancla (atrás, adelante o un link de afuera del menú).
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    const close = () => setOpen(false);
+    window.addEventListener("hashchange", close);
+    window.addEventListener("popstate", close);
+    return () => {
+      window.removeEventListener("hashchange", close);
+      window.removeEventListener("popstate", close);
+    };
+  }, []);
+
+  // El menú mobile se cierra al tocar fuera del panel o con Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("click", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-card-border">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 min-w-[44px] min-h-[44px] justify-center">
-          <Logo className="w-8 h-8" />
+    <header className="sticky top-0 z-50 border-b border-foreground/16 bg-background text-foreground">
+      <div className="wrap flex min-h-[60px] items-center gap-2.5 sm:min-h-[72px] sm:gap-3 nav:gap-7">
+        <Link href="/" aria-label="Nautom, inicio" className="mr-auto flex min-h-[44px] items-center">
+          <Image
+            src="/logo-white-copper.svg"
+            alt="Nautom"
+            width={148}
+            height={15}
+            preload
+            className="h-3 w-auto sm:h-[15px]"
+          />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm transition-colors hover:text-white ${
-                pathname === link.href ? "text-white" : "text-muted"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="bg-primary hover:bg-accent-700 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors"
-          >
-            Empezar
-          </Link>
-        </div>
+        <nav aria-label="Principal" className="hidden nav:block">
+          <ul className="flex gap-7 text-[15px]">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="inline-block py-2.5 text-muted transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-3 min-w-[44px] min-h-[44px] items-center justify-center"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+        <Link
+          href="/contact"
+          className="group inline-flex min-h-[42px] items-center gap-3 rounded bg-primary px-3 font-mono text-[13px] font-bold tracking-[0.01em] whitespace-nowrap text-background transition-colors hover:bg-accent-200 sm:min-h-[44px] sm:px-[18px] sm:text-sm"
         >
-          <span
-            className={`block w-6 h-0.5 bg-white transition-transform ${
-              mobileOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition-opacity ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition-transform ${
-              mobileOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
-      </div>
+          Contanos tu caso
+          <span className="hidden sm:contents">
+            <ArrowIcon size={16} />
+          </span>
+        </Link>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-md border-b border-card-border overflow-hidden"
+        <div ref={menuRef} className="relative nav:hidden">
+          <button
+            ref={buttonRef}
+            type="button"
+            aria-label="Menú"
+            aria-expanded={open}
+            aria-controls="menu-movil"
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-11 w-11 cursor-pointer place-items-center rounded border border-foreground/30 text-foreground"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d={open ? "M6 6l12 12M18 6L6 18" : "M4 7h16M4 12h16M4 17h16"}
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+              />
+            </svg>
+          </button>
+          {open && (
+            <nav
+              id="menu-movil"
+              aria-label="Menú móvil"
+              className="absolute top-[calc(100%+13px)] right-0 grid w-[min(280px,calc(100vw-32px))] rounded border border-foreground/30 bg-background p-1.5"
+            >
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`text-sm transition-colors py-2 min-h-[44px] flex items-center ${
-                    pathname === link.href ? "text-white" : "text-muted"
-                  }`}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-[46px] items-center rounded-xs px-3.5 text-base text-foreground hover:bg-foreground/6 [&+&]:border-t [&+&]:border-foreground/16"
                 >
-                  {link.label}
+                  {link.mobileLabel ?? link.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="bg-primary text-white text-sm font-medium px-5 py-2 rounded-full text-center transition-colors"
-              >
-                Empezar
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            </nav>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }
