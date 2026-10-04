@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-import { OPEN_GRAPH_BASE, SITE_URL } from "@/lib/site";
+import { LINKEDIN_URL, OPEN_GRAPH_BASE, SITE_URL } from "@/lib/site";
+import { SERVICES } from "@/lib/services";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -58,56 +59,110 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD del sitio: la organización, el sitio y los cofundadores, enlazados por @id.
+// Sólo datos visibles en el sitio (home, /about y pie). Si cambia el copy de qué
+// hace Nautom, revisalo en el mismo commit.
+const ORG_ID = `${SITE_URL}/#organization`;
+const founders = [
+  { id: `${SITE_URL}/about#juan-gomez-naar`, name: "Juan Gómez Naar" },
+  { id: `${SITE_URL}/about#ignacio-ramognino`, name: "Ignacio Ramognino" },
+];
+
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORG_ID,
+      name: "Nautom",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon-512.svg`,
+        width: 512,
+        height: 512,
+      },
+      description:
+        "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construye sistemas de gestión a medida, agentes de IA y automatizaciones que sacan el trabajo manual de la operación, y los sigue mejorando. También construye y opera productos digitales con integración de WhatsApp Business.",
+      foundingDate: "2023",
+      foundingLocation: { "@type": "Place", name: "Buenos Aires, Argentina" },
+      founder: founders.map(({ id }) => ({ "@id": id })),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ciudad Autónoma de Buenos Aires",
+        addressCountry: "AR",
+      },
+      areaServed: { "@type": "Country", name: "Argentina" },
+      sameAs: [LINKEDIN_URL],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        url: `${SITE_URL}/contact`,
+        availableLanguage: "es",
+      },
+      knowsAbout: [
+        "Inteligencia artificial para empresas",
+        "Agentes de IA",
+        "Automatización de procesos",
+        "Sistemas de gestión a medida",
+        "Integración con WhatsApp Business",
+        "AI agents",
+        "Business automation",
+        "Next.js",
+        "Supabase",
+        "Vercel",
+        "Python",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios de IA para empresas",
+        itemListElement: [
+          ...SERVICES.map(({ title, text }) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: title,
+              description: text,
+              provider: { "@id": ORG_ID },
+              areaServed: { "@type": "Country", name: "Argentina" },
+            },
+          })),
+          ...["Productos digitales a medida", "Integración con WhatsApp Business"].map((name) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name, provider: { "@id": ORG_ID } },
+          })),
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Nautom",
+      inLanguage: "es-AR",
+      publisher: { "@id": ORG_ID },
+    },
+    ...founders.map(({ id, name }) => ({
+      "@type": "Person",
+      "@id": id,
+      name,
+      jobTitle: "Cofundador",
+      worksFor: { "@id": ORG_ID },
+    })),
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" data-scroll-behavior="smooth" className={`${spaceMono.variable} ${inter.variable}`}>
+    <html lang="es-AR" data-scroll-behavior="smooth" className={`${spaceMono.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Nautom",
-              url: SITE_URL,
-              description:
-                "Estudio de servicios de IA para empresas argentinas de 50 a 600 personas. Construye sistemas de gestión a medida, agentes de IA y automatizaciones que sacan el trabajo manual de la operación, y los sigue mejorando. También construye y opera productos digitales con integración de WhatsApp Business.",
-              foundingDate: "2023",
-              founders: [
-                { "@type": "Person", name: "Juan Gómez Naar" },
-                { "@type": "Person", name: "Ignacio Ramognino" },
-              ],
-              areaServed: {
-                "@type": "Country",
-                name: "Argentina",
-              },
-              knowsAbout: [
-                "Inteligencia artificial para empresas",
-                "Agentes de IA",
-                "Automatización de procesos",
-                "Sistemas de gestión a medida",
-                "Integración con WhatsApp Business",
-                "AI agents",
-                "Business automation",
-                "Next.js",
-                "Supabase",
-                "Vercel",
-                "Python",
-              ],
-              serviceType: [
-                "Sistemas de gestión a medida",
-                "Agentes de inteligencia artificial",
-                "Automatización de procesos empresariales",
-                "Tableros de gestión",
-                "Productos digitales a medida",
-                "Integración con WhatsApp Business",
-              ],
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground antialiased min-h-screen font-sans">
