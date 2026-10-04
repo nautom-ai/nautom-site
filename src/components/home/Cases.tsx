@@ -130,12 +130,12 @@ function LeadCase() {
             height={26}
             className="h-[26px] w-auto opacity-75 brightness-0"
           />
-          <h4
+          <h3
             id="c-jum"
             className="font-mono text-[clamp(21px,1.9vw,26px)] leading-[1.2] font-bold tracking-[-0.015em] text-ink"
           >
             El Jumillano
-          </h4>
+          </h3>
         </div>
         <p className="mt-2 text-sm leading-normal text-ink-3">
           Distribuidor #1 de Agua IVESS · casi 600 personas · 4&nbsp;sociedades
@@ -236,12 +236,12 @@ function CaseCard({ id, name, context, slots, shot }: SmallCase) {
       aria-labelledby={id}
       className={`flex min-w-0 flex-col rounded border border-line bg-white px-[22px] pt-[22px] pb-5 ${shot ? "md:max-wide:grid md:max-wide:grid-cols-2 md:max-wide:content-start md:max-wide:gap-x-7" : ""}`}
     >
-      <h4
+      <h3
         id={id}
         className={`font-mono text-lg leading-[1.25] font-bold tracking-[-0.01em] text-ink ${col}`}
       >
         {name}
-      </h4>
+      </h3>
       <p className={`mt-2 text-sm leading-normal text-ink-3 ${col}`}>{context}</p>
       {slots.map(({ label, figure, text }) => (
         <div key={label} className={`mt-[18px] border-t border-line-soft pt-3 ${col}`}>
@@ -284,7 +284,7 @@ export default function Cases() {
     <div id="casos" role="region" aria-labelledby="casos-title" className="mt-[clamp(56px,6.4vw,96px)]">
       <Alias id="cases" />
       <div className="mb-[22px] grid grid-cols-1 items-baseline gap-x-12 gap-y-2 rail:grid-cols-[minmax(0,var(--spacing-rail))_minmax(0,1fr)]">
-        <Label as="h3" id="casos-title" tone="surface">
+        <Label as="h2" id="casos-title" tone="surface">
           Casos actuales
         </Label>
         <div>

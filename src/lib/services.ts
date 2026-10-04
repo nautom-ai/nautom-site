@@ -12,7 +12,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     title: "Agentes de IA",
-    text: "Leen información y resuelven una tarea concreta. En Altis Viajes, uno lee el PDF del mayorista y arma la cotización, y una persona la confirma.",
+    text: "Leen documentos y resuelven tareas concretas, como armar una cotización para que tu equipo la revise.",
   },
   {
     title: "Automatizaciones",

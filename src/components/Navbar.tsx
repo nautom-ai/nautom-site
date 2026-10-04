@@ -8,12 +8,10 @@ import { ArrowIcon } from "./home/ui";
 
 // Los links apuntan a secciones de la home; con "/#…" también funcionan desde las otras páginas.
 const navLinks = [
-  { href: "/#que-hacemos", label: "Qué hacemos" },
+  { href: "/#que-hacemos", label: "Servicios" },
   { href: "/#casos", label: "Casos" },
-  { href: "/#como-trabajamos", label: "Cómo trabajamos" },
   { href: "/#productos", label: "Productos", mobileLabel: "Productos digitales" },
-  { href: "/#equipo", label: "Equipo" },
-  { href: "/#preguntas", label: "Preguntas" },
+  { href: "/about", label: "Nosotros" },
 ];
 
 export default function Navbar() {
@@ -58,7 +56,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-foreground/16 bg-background text-foreground">
-      <div className="wrap flex min-h-[60px] items-center gap-2.5 sm:min-h-[72px] sm:gap-3 nav:gap-7">
+      <div className="wrap flex min-h-[60px] items-center gap-2.5 sm:min-h-[72px] sm:gap-3 lg:gap-7">
         <Link href="/" aria-label="Nautom, inicio" className="mr-auto flex min-h-[44px] items-center">
           <Image
             src="/logo-white-copper.svg"
@@ -70,8 +68,8 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav aria-label="Principal" className="hidden nav:block">
-          <ul className="flex gap-7 text-[15px]">
+        <nav aria-label="Principal" className="hidden lg:block">
+          <ul className="flex gap-7 text-sm">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -95,7 +93,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div ref={menuRef} className="relative nav:hidden">
+        <div ref={menuRef} className="relative lg:hidden">
           <button
             ref={buttonRef}
             type="button"
