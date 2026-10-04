@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 // Host canónico: nautom.com redirige a www en Vercel.
 export const SITE_URL = "https://www.nautom.com";
 
+export const LINKEDIN_URL = "https://www.linkedin.com/company/nautom";
+
 // Base para compartir. El openGraph o twitter de una página reemplaza entero al
 // del layout, incluida la imagen de opengraph-image.tsx: por eso va explícita.
 const SHARE_IMAGE = {

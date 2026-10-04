@@ -1,26 +1,9 @@
+import { SERVICES } from "@/lib/services";
 import Cases from "./Cases";
 import { OFFSET, SectionHead } from "./ui";
 
-// Qué hacemos · camino principal: qué incluye el servicio y los casos actuales.
-
-const includes = [
-  {
-    title: "Sistemas de gestión a medida",
-    text: "La aplicación donde tu equipo trabaja todos los días, hecha para cómo opera tu empresa.",
-  },
-  {
-    title: "Agentes de IA",
-    text: "Leen información y resuelven una tarea concreta. En Altis Viajes, uno lee el PDF del mayorista y arma la cotización, y una persona la confirma.",
-  },
-  {
-    title: "Automatizaciones",
-    text: "Conectan las herramientas que ya usás para que nadie copie datos a mano de un lado a otro.",
-  },
-  {
-    title: "Tableros",
-    text: "Los números de la operación en un solo lugar y al día, para ver rápido dónde algo no cierra.",
-  },
-];
+// Qué hacemos · camino principal: qué incluye el servicio (src/lib/services.ts)
+// y los casos actuales.
 
 export default function Work() {
   return (
@@ -42,7 +25,7 @@ export default function Work() {
           aria-label="Qué incluye"
           className={`mt-[clamp(36px,3.6vw,52px)] grid grid-cols-2 gap-x-7 gap-y-6 wide:grid-cols-4 ${OFFSET}`}
         >
-          {includes.map(({ title, text }) => (
+          {SERVICES.map(({ title, text }) => (
             <li key={title} className="min-w-0 border-t-2 border-ink pt-3.5">
               <h3 className="text-base leading-[1.35] font-semibold tracking-[-0.005em] text-ink">
                 {title}
