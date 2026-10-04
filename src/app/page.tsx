@@ -9,6 +9,7 @@ import TestimonialCarousel from "@/components/TestimonialCarousel";
 import CaseTabs from "@/components/CaseTabs";
 import SectionTitle from "@/components/SectionTitle";
 import FAQAccordion from "@/components/FAQAccordion";
+import { FAQ_ITEMS, faqJsonLd } from "@/lib/faq";
 import TeamSection from "@/components/TeamSection";
 import HowWeWork from "@/components/HowWeWork";
 // FloatingUIFragments preserved but no longer rendered in hero
@@ -183,33 +184,10 @@ export default function Home() {
             subtitle="Respuestas claras sobre cómo trabajamos"
             className="mb-12"
           />
-          <FAQAccordion
-            items={[
-              {
-                q: "\u00BFQué es un agente de IA y cómo puede ayudar a mi empresa?",
-                a: "Un agente de IA es un sistema inteligente que monitorea datos, toma decisiones y ejecuta tareas de forma autónoma. Por ejemplo, podemos crear un agente que detecte anomalías en la asistencia de tu equipo, genere reportes automáticos o procese facturas sin intervención manual.",
-              },
-              {
-                q: "\u00BFCuánto cuesta automatizar procesos en una PyME?",
-                a: "Depende del alcance, pero trabajamos con modelos de fee mensual fijo que se adaptan al tamaño de tu operación. Nuestro foco es que el retorno de inversión sea claro desde el primer mes — automatizar una tarea que consume 1 hora diaria puede representar un ahorro de más de 20 horas mensuales.",
-              },
-              {
-                q: "\u00BFTrabajan solo con empresas grandes?",
-                a: "No. Nos especializamos en PyMEs argentinas de entre 50 y 600 empleados. Empresas que ya tienen operaciones establecidas pero necesitan tecnología para escalar sin multiplicar costos.",
-              },
-              {
-                q: "\u00BFQué tecnologías usan?",
-                a: "Trabajamos con un stack moderno y AI-first: Claude Code, Next.js, Supabase, Vercel, Tailwind, GitHub y más. Elegimos la herramienta correcta para cada problema, priorizando siempre soluciones potenciadas por IA.",
-              },
-              {
-                q: "\u00BFCuánto tiempo toma implementar una solución?",
-                a: "Un agente de IA o una automatización básica puede estar funcionando en 1-2 semanas. Proyectos más complejos como aplicaciones internas completas pueden tomar 4-8 semanas. Nuestro approach AI-first nos permite entregar mucho más rápido que el desarrollo tradicional.",
-              },
-              {
-                q: "\u00BFQué diferencia a Nautom de una software factory tradicional?",
-                a: "Somos un estudio boutique, no una fábrica. Construimos productos propios y proyectos a medida con un equipo chico y dedicado. Usamos IA no solo como producto sino como herramienta de desarrollo — lo que nos permite entregar más rápido, con menos costo y más inteligencia incorporada en cada solución.",
-              },
-            ]}
+          <FAQAccordion items={FAQ_ITEMS} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
           />
         </div>
       </section>

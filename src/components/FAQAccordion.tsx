@@ -3,11 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-
-interface FAQItem {
-  q: string;
-  a: string;
-}
+import type { FAQItem } from "@/lib/faq";
 
 export default function FAQAccordion({ items }: { items: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

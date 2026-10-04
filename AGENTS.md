@@ -11,7 +11,8 @@ Landing pública de Nautom: `www.nautom.com`. Next.js (App Router) + Tailwind 4 
 ## 2 · Lo que no se infiere del código
 
 - **Verificación de Meta (Tech Provider, PR #18).** Meta revisa por URL `/privacidad`, el ancla `/privacidad#eliminacion`, `/terminos` y los datos del prestador en el pie (`src/components/Footer.tsx`). No los renombres, muevas ni borres, y no cambies su contenido legal sin pedido explícito de Juancho.
-- **La FAQ vive dos veces:** la visible en `src/app/page.tsx` y el JSON-LD `FAQPage` en `src/app/layout.tsx`. Google pide que coincidan: si cambiás una, cambiá la otra en el mismo commit. Lo mismo para la descripción del JSON-LD `Organization` respecto del copy del sitio.
+- **Datos estructurados:** Google pide que el JSON-LD coincida con lo visible. La FAQ tiene una sola fuente, `src/lib/faq.ts`: de ahí salen el acordeón y el JSON-LD `FAQPage`, que va sólo en la home; no copies su texto a otro lado. El JSON-LD `Organization` de `src/app/layout.tsx` se mantiene a mano: si cambia el copy de qué hace Nautom, revisalo en el mismo commit.
+- **Dominio canónico:** `www.nautom.com`, en `SITE_URL` de `src/lib/site.ts`. No escribas el dominio a mano en metadata, sitemap ni JSON-LD.
 - **Formulario de contacto:** `src/app/api/contact/route.ts` manda por Resend desde `contact@nautom.com` a `juan@nautom.com`. Con la clave real, cada envío de prueba le llega a Juancho: no envíes el formulario sin pedido.
 - **Marca:** colores y tipografías salen del brand book como tokens en `@theme` de `src/app/globals.css` (Navy Deep `#0C1B33`, Warm Copper `#D4804A`, Space Mono para títulos, Inter para texto). Usá las clases de esos tokens (`bg-background`, `text-primary`, `text-muted`, …), no hex sueltos. Assets oficiales en `public/` (`logo-*-copper.svg`, `isotipo-*-copper.svg`).
 - **Copy:** español rioplatense con voseo (`Contanos`, `Conocé`), público PyME argentina. Para textos comerciales nuevos usá la skill `nautom-copywriting`.
