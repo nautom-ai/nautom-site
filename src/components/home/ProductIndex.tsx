@@ -13,7 +13,7 @@ export default function ProductIndex() {
       <Alias id="products" />
       <div className="wrap grid gap-8 md:grid-cols-[1fr_1.5fr] md:gap-16">
         <div>
-          <Label tone="surface" copper>03 / Productos digitales</Label>
+          <Label tone="surface" copper>Productos digitales</Label>
           <h2 id="products-title" className="mt-4 max-w-[18ch] font-mono text-[clamp(27px,3vw,36px)] leading-tight font-bold tracking-[-0.035em]">También construimos productos.</h2>
           <p className="mt-5 max-w-[33ch] text-[15px] leading-relaxed text-ink-2">Plataformas que diseñamos, operamos y seguimos evolucionando.</p>
         </div>

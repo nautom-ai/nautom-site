@@ -1,6 +1,6 @@
 # Propuesta 01 · Home clara
 
-Maqueta navegable para revisar el inicio y un caso completo de Nautom. No modifica la home ni se publica como una ruta de la aplicación. La referencia de Whitespace se aplica a la composición clara y a las demostraciones visibles; Marker aporta la explicación de cómo nos integramos con la operación y seguimos trabajando con el equipo.
+Referencia de la dirección visual aprobada por Juancho el 4 de octubre de 2026. La maqueta original se conserva aislada; la implementación integrada vive en `src/components/home/HomeClear.tsx` y se sirve en la home de Next.js. La referencia de Whitespace se aplica a la composición clara y a las demostraciones visibles; Marker aporta la explicación de cómo nos integramos con la operación y seguimos trabajando con el equipo.
 
 ## Abrir
 
@@ -19,7 +19,7 @@ Abrir `http://localhost:3011`. El servidor escucha sólo en loopback. Se puede e
 - El caso de El Jumillano: contexto, escala, cambios concretos en la operación y capturas reales.
 - El diagrama de herramientas → sistemas e IA → equipo y la explicación del acompañamiento.
 
-Es una dirección visual parcial. Productos, FAQ y pie legal se integrarían en una implementación posterior, conservando sus fuentes y contratos actuales. No se representa esta maqueta como una home lista para publicar.
+La implementación aprobada integra esta dirección con servicios, productos, FAQ, navegación móvil y el pie legal existente. Conserva `SERVICES` y `FAQ_ITEMS` como fuentes únicas. Las imágenes actuales fueron aprobadas para esta publicación; su reemplazo queda como siguiente iteración.
 
 ## Fuentes y límites
 
@@ -28,9 +28,9 @@ Es una dirección visual parcial. Productos, FAQ y pie legal se integrarían en 
 - Capturas y cifras: `src/components/home/Cases.tsx` y `public/images/casos/`. Se conservan las aproximaciones de repartos y sistemas integrados. No se agregan métricas comerciales ni testimonios.
 - Destinos del sitio: `SITE_URL` de `src/lib/site.ts`, resuelto por el servidor de la maqueta.
 - Las capturas son las ya publicadas, con datos personales difuminados. En mobile tienen desplazamiento horizontal dentro del marco y opción de abrirlas a tamaño completo.
-- Esta propuesta no altera copy publicado, `llms.txt`, JSON-LD, sitemap, legales, robots ni contacto. Al implementar una home definitiva se deberán revisar las fuentes y el sitemap en el mismo commit.
+- La implementación actualiza `llms.txt` con el caso ampliado. Metadata y JSON-LD revisados y coherentes con lo visible. La home mantiene `lastModified` del 2026-10-04 (mismo día ART). Legales, robots y contacto sin cambios.
 
-## Verificación
+## Verificación de la maqueta original
 
 - `RESEND_API_KEY=re_placeholder npm run build`: OK, incluido TypeScript.
 - `node --check` de los dos scripts: OK.
@@ -41,3 +41,17 @@ Es una dirección visual parcial. Productos, FAQ y pie legal se integrarían en 
 - No se envió el formulario. No se tomaron nuevas capturas de las apps con sesión autenticada.
 
 Capturas de revisión: [desktop](evidence/desktop-full.jpg), [mobile](evidence/mobile-full.jpg).
+
+
+## Verificación de la implementación
+
+- `RESEND_API_KEY=re_placeholder npm run build`: compilación, TypeScript y generación de las 15 rutas OK.
+- Desktop 1440 px y mobile 375 px: inicio, tres ejemplos, caso, diagrama, servicios, productos, FAQ, CTA y pie inspeccionados.
+- Tabs: click, flechas izquierda/derecha con retorno, Home y End; un panel visible y foco en la pestaña activa.
+- Menú móvil: apertura, Escape devuelve foco y navegación a un ancla lo cierra. Navegación a Nosotros y Contacto conserva el encabezado apropiado.
+- FAQ: apertura por Enter y exclusividad; las nueve preguntas/respuestas coinciden exactamente con FAQPage.
+- Diez rutas HTTP 200; siete páginas con H1 y canonical únicos; anclas internas, proveedor legal y `/privacidad#eliminacion` verificados.
+- Consola del build de producción local sin errores ni advertencias. Formulario inspeccionado sin envío.
+- El build de Vercel del PR ahora contiene la home implementada. La maqueta de `3011` permanece como referencia.
+
+Evidencia de implementación: [desktop](evidence/implementacion-desktop.jpg), [inicio](evidence/implementacion-inicio.jpg), [mobile](evidence/implementacion-mobile.jpg).

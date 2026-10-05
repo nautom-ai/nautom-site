@@ -19,6 +19,7 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const light = pathname === "/";
 
   // Se cierra también al cambiar de página o de ancla (atrás, adelante o un link de afuera del menú).
   useEffect(() => {
@@ -55,11 +56,11 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-foreground/16 bg-background text-foreground">
-      <div className="wrap flex min-h-[60px] items-center gap-2.5 sm:min-h-[72px] sm:gap-3 lg:gap-7">
+    <header className={`sticky top-0 z-50 border-b ${light ? "on-light border-line/55 bg-surface/95 text-ink backdrop-blur-md" : "border-foreground/16 bg-background text-foreground"}`}>
+      <div className={`${light ? "mx-auto w-[calc(100%-40px)] max-w-[1184px] min-[761px]:w-[calc(100%-64px)] min-[1001px]:w-[calc(100%-96px)] min-h-[72px] lg:min-h-[88px]" : "wrap min-h-[60px] sm:min-h-[72px]"} flex items-center gap-2.5 sm:gap-3 lg:gap-7`}>
         <Link href="/" aria-label="Nautom, inicio" className="mr-auto flex min-h-[44px] items-center">
           <Image
-            src="/logo-white-copper.svg"
+            src={light ? "/logo-navy-copper.svg" : "/logo-white-copper.svg"}
             alt="Nautom"
             width={148}
             height={15}
@@ -74,7 +75,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-block py-2.5 text-muted transition-colors hover:text-foreground"
+                  className={`inline-block py-2.5 transition-colors ${light ? "text-ink-2 hover:text-accent-700" : "text-muted hover:text-foreground"}`}
                 >
                   {link.label}
                 </Link>
@@ -101,7 +102,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="menu-movil"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-11 w-11 cursor-pointer place-items-center rounded border border-foreground/30 text-foreground"
+            className={`grid h-11 w-11 cursor-pointer place-items-center rounded border ${light ? "border-line text-ink" : "border-foreground/30 text-foreground"}`}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -116,14 +117,14 @@ export default function Navbar() {
             <nav
               id="menu-movil"
               aria-label="Menú móvil"
-              className="absolute top-[calc(100%+13px)] right-0 grid w-[min(280px,calc(100vw-32px))] rounded border border-foreground/30 bg-background p-1.5"
+              className={`absolute top-[calc(100%+13px)] right-0 grid w-[min(280px,calc(100vw-32px))] rounded border p-1.5 ${light ? "border-line bg-surface shadow-lg" : "border-foreground/30 bg-background"}`}
             >
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="flex min-h-[46px] items-center rounded-xs px-3.5 text-base text-foreground hover:bg-foreground/6 [&+&]:border-t [&+&]:border-foreground/16"
+                  className={`flex min-h-[46px] items-center rounded-xs px-3.5 text-base [&+&]:border-t ${light ? "text-ink hover:bg-paper [&+&]:border-line" : "text-foreground hover:bg-foreground/6 [&+&]:border-foreground/16"}`}
                 >
                   {link.mobileLabel ?? link.label}
                 </Link>
