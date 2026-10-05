@@ -9,7 +9,7 @@ export default function Faq() {
       <div className="wrap">
         <div className="grid gap-8 border-t border-line pt-12 md:grid-cols-[1fr_1.5fr] md:gap-16 md:pt-16">
           <div>
-            <Label tone="surface" copper>04 / Antes de empezar</Label>
+            <Label tone="surface" copper>Antes de empezar</Label>
             <h2 id="faq-title" className="mt-4 max-w-[16ch] font-mono text-[clamp(27px,3vw,36px)] leading-tight font-bold tracking-[-0.035em]">Lo que querés saber.</h2>
           </div>
           <div className="border-t border-line">
