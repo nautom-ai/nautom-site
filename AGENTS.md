@@ -17,7 +17,7 @@ Landing pública de Nautom: `www.nautom.com`. Next.js (App Router) + Tailwind 4 
 - **Dominio canónico:** `www.nautom.com`, en `SITE_URL` de `src/lib/site.ts`. No escribas el dominio a mano en metadata, sitemap ni JSON-LD.
 - **Formulario de contacto:** `src/app/api/contact/route.ts` manda por Resend desde `contact@nautom.com` a `juan@nautom.com`. Con la clave real, cada envío de prueba le llega a Juancho: no envíes el formulario sin pedido.
 - **Marca:** colores y tipografías salen del brand book como tokens en `@theme` de `src/app/globals.css` (Navy Deep `#0C1B33`, Warm Copper `#D4804A`, Space Mono para títulos, Inter para texto). Usá las clases de esos tokens (`bg-background`, `text-primary`, `text-muted`, …), no hex sueltos. Assets oficiales en `public/` (`logo-*-copper.svg`, `isotipo-*-copper.svg`).
-- **Copy:** español rioplatense con voseo (`Contanos`, `Conocé`), público PyME argentina. Para textos comerciales nuevos usá la skill `nautom-copywriting`.
+- **Copy:** español rioplatense con voseo (`Contanos`, `Conocé`), público PyME argentina. Las afirmaciones son verificables: nada de clientes, métricas, testimonios ni precios inventados; un dato que falta va como `[dato a validar: …]`. Cada CTA nombra lo que pasa al tocarlo y coincide con su destino. Para diseñar o reescribir una página comercial, la skill `nautom-design`.
 - En CSS, `animation-fill-mode: backwards`, nunca `both`: `both` crea stacking contexts que bloquean clicks.
 
 ## 3 · Comandos y checks
